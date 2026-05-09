@@ -3,7 +3,7 @@ import type {CreateLinkResponse} from "../types/api.ts";
 
 export default function HomePage() {
   const [url, setUrl] = useState("")
-  const [shortCode, setShortCode] = useState("")
+  const [shortUrl, setShortUrl] = useState("")
 
   const handleShortenUrl = () => {
     fetch("/api/v1/Link", {
@@ -16,7 +16,7 @@ export default function HomePage() {
         throw new Error(`Request failed: ${res.status}`)
       }
       const data: CreateLinkResponse = await res.json();
-      setShortCode(data.shortCode)
+      setShortUrl(`${window.location.origin}/l/${data.shortCode}`);
     })
   };
 
@@ -33,10 +33,10 @@ export default function HomePage() {
             <input type="url" value={url} onChange={(e) => setUrl(e.target.value)}/>
           </div>
           <div className="cardRow">
-            <span>Shortcode:</span>
-            <input type="text" readOnly value={shortCode}/>
+            <span>Short URL:</span>
+            <input type="text" readOnly value={shortUrl}/>
           </div>
-          <button type="button" className="shorten" onClick={handleShortenUrl}>Generate Short Code</button>
+          <button type="button" className="shorten" onClick={handleShortenUrl}>Generate Short URL</button>
         </div>
       </section>
     </>
