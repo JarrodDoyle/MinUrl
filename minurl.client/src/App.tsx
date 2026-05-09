@@ -1,7 +1,8 @@
 import {Navigate, Route, Routes} from "react-router";
-import './App.css'
+
 import HomePage from "./pages/HomePage.tsx";
 import LinkPage from "./pages/LinkPage.tsx";
+import './App.css'
 
 export default function App() {
   return (

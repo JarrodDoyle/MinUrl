@@ -1,4 +1,5 @@
 import {useNavigate, useParams} from "react-router";
+
 import type {GetLinkDetailsResponse} from "../types/api.ts";
 
 export default function LinkPage() {
