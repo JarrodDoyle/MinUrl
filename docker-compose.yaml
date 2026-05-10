@@ -1,0 +1,19 @@
+﻿services:
+  minurl_client:
+    image: minurl-client
+    build:
+      context: ./minurl.client/
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - API_URL="http://minurl_server:8080"
+    depends_on:
+      - minurl_server
+
+  minurl_server:
+    image: minurl-server
+    build: ./MinUrl.Server/src/MinUrl.Server/
+    ports:
+      - "8080:8080"
+      - "8081:8081"

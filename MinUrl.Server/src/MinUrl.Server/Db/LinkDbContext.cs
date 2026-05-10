@@ -11,7 +11,12 @@ public class LinkDbContext : DbContext
     public LinkDbContext(ILogger<LinkDbContext> logger)
     {
         var localFolder = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-        DbPath = Path.Join(localFolder, "MinUrl", "links.db");
+        var dbFolder = Path.Join(localFolder, "MinUrl");
+        if (!Directory.Exists(dbFolder))
+        {
+            Directory.CreateDirectory(dbFolder);
+        }
+        DbPath = Path.Join(dbFolder, "links.db");
     }
 
     // The following configures EF to create a Sqlite database file in the
